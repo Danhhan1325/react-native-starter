@@ -14,6 +14,15 @@
       "title": "Oops! Something went wrong.",
       "description": "We are sorry for the inconvenience. Please try again later.",
       "cta": "Reload the screen"
+    },
+    "auth": {
+      "login": {
+        "title": "Welcome Back",
+        "subtitle": "Sign in to your account",
+        "email_placeholder": "Email",
+        "password_placeholder": "Password",
+        "button": "Login"
+      }
     }
   }
 }
