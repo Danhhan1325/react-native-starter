@@ -9,6 +9,7 @@ const generateComponentStyles = ({
   layout,
   borders,
   gutters,
+  colors,
 }: ComponentTheme) => {
   return {
     buttonCircle: {
@@ -25,62 +26,32 @@ const generateComponentStyles = ({
       height: 250,
       width: 250,
     },
-    // Login Screen Components
-    loginContainer: {
-      ...layout.flex_1,
-      ...backgrounds.gray50,
-    },
-    loginKeyboardView: {
-      ...layout.flex_1,
-    },
-    loginContent: {
-      ...layout.flex_1,
-      ...layout.col,
-      ...layout.itemsCenter,
-      ...layout.justifyCenter,
-      ...gutters.paddingHorizontal_32,
-    },
-    loginLogoContainer: {
-      width: 80,
-      height: 80,
-      borderRadius: 40,
-      ...layout.justifyCenter,
-      ...layout.itemsCenter,
-      ...gutters.marginBottom_32,
-      shadowColor: '#000',
-      shadowOffset: {
-        width: 0,
-        height: 2,
-      },
-      shadowOpacity: 0.1,
-      shadowRadius: 3.84,
-      elevation: 5,
-    },
-    loginInput: {
+    // Reusable Input Variants
+    inputOutlined: {
       ...layout.fullWidth,
       height: 56,
       ...backgrounds.gray50,
       ...borders.w_1,
-      borderColor: '#E1E5E9',
-      ...borders.rounded_12,
+      borderColor: colors.gray200,
+      ...borders.rounded_16,
       ...gutters.paddingHorizontal_16,
       fontSize: 16,
-      color: '#333',
-      shadowColor: '#000',
+      color: colors.gray800,
+      shadowColor: colors.gray800,
       shadowOffset: { width: 0, height: 1 },
       shadowOpacity: 0.05,
       shadowRadius: 2,
       elevation: 1,
     },
-    loginButton: {
+    // Reusable Button Variants
+    buttonPrimary: {
       ...layout.fullWidth,
       height: 56,
-      backgroundColor: '#4A90E2',
-      ...borders.rounded_12,
+      backgroundColor: colors.purple500,
+      ...borders.rounded_16,
       ...layout.justifyCenter,
       ...layout.itemsCenter,
-      ...gutters.marginTop_24,
-      shadowColor: '#4A90E2',
+      shadowColor: colors.purple500,
       shadowOffset: {
         width: 0,
         height: 4,
@@ -89,10 +60,10 @@ const generateComponentStyles = ({
       shadowRadius: 5,
       elevation: 8,
     },
-    loginButtonText: {
+    buttonPrimaryText: {
       fontSize: 18,
       fontWeight: '600',
-      color: '#FFFFFF',
+      color: colors.gray50,
       letterSpacing: 0.5,
     },
   } as const satisfies AllStyle;

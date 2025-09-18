@@ -1,6 +1,7 @@
 import type { RootScreenProps } from '@/navigation/types';
 
 import { useTranslation } from 'react-i18next';
+import { useMemo } from 'react';
 import {
   KeyboardAvoidingView,
   Platform,
@@ -15,18 +16,22 @@ import { useTheme } from '@/theme';
 import { AssetByVariant } from '@/components/atoms';
 import { SafeScreen } from '@/components/templates';
 
+import { createLoginStyles } from './LoginScreen.styles';
+
 function LoginScreen() {
-  const { fonts, gutters, layout, components } = useTheme();
+  const { fonts, gutters, layout, components, colors, ...theme } = useTheme();
   const { t } = useTranslation();
 
+  const styles = useMemo(() => createLoginStyles(theme), [theme]);
+
   return (
-    <SafeScreen style={components.loginContainer}>
+    <SafeScreen style={styles.container}>
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        style={components.loginKeyboardView}
+        style={styles.keyboardView}
       >
-        <View style={components.loginContent}>
-          <View style={components.loginLogoContainer}>
+        <View style={styles.content}>
+          <View style={styles.logoContainer}>
             <AssetByVariant
               path="tom"
               resizeMode="contain"
@@ -34,29 +39,29 @@ function LoginScreen() {
             />
           </View>
           
-          <Text style={[fonts.size_24, fonts.gray800, fonts.bold]}>
+          <Text style={[fonts.size_24, fonts.gray800, fonts.bold, styles.title]}>
             {t('auth.login.title')}
           </Text>
-          <Text style={[fonts.size_16, fonts.gray400, gutters.marginBottom_40]}>
+          <Text style={[fonts.size_16, fonts.gray400, styles.subtitle]}>
             {t('auth.login.subtitle')}
           </Text>
           
-          <View style={[layout.fullWidth, gutters.marginBottom_24]}>
+          <View style={styles.inputContainer}>
             <TextInput
-              style={components.loginInput}
+              style={components.inputOutlined}
               placeholder={t('auth.login.email_placeholder')}
-              placeholderTextColor="#999"
+              placeholderTextColor={colors.gray400}
               keyboardType="email-address"
               autoCapitalize="none"
               autoCorrect={false}
             />
           </View>
           
-          <View style={layout.fullWidth}>
+          <View style={styles.inputContainer}>
             <TextInput
-              style={components.loginInput}
+              style={components.inputOutlined}
               placeholder={t('auth.login.password_placeholder')}
-              placeholderTextColor="#999"
+              placeholderTextColor={colors.gray400}
               secureTextEntry
               autoCapitalize="none"
               autoCorrect={false}
@@ -64,10 +69,10 @@ function LoginScreen() {
           </View>
           
           <TouchableOpacity
-            style={components.loginButton}
+            style={[components.buttonPrimary, styles.button]}
             activeOpacity={0.8}
           >
-            <Text style={components.loginButtonText}>
+            <Text style={components.buttonPrimaryText}>
               {t('auth.login.button')}
             </Text>
           </TouchableOpacity>
